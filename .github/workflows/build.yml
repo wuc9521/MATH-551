@@ -7,7 +7,6 @@ on:
   pull_request:
     paths:
       - 'hw/hw3-extra/**'
-  workflow_dispatch:
 
 jobs:
   compile:
