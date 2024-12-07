@@ -12,3 +12,10 @@ jobs:
         with:
           source_file: |
             hw/hw3-extra/main.typ
+
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDFs
+          path: |
+            main.pdf
