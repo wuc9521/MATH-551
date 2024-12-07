@@ -12,6 +12,8 @@ on:
 jobs:
   compile:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,12 +33,10 @@ jobs:
           name: honor-paper
           path: honor-paper.pdf
           
-      - name: Commit PDF
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Commit and push PDF
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add honor-paper.pdf
-          git commit -m "Update honor-paper.pdf" || exit 0
+          git commit -m "Update honor-paper.pdf" || echo "No changes to commit"
           git push
-
