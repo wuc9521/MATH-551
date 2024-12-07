@@ -18,4 +18,4 @@ jobs:
         with:
           name: PDFs
           path: |
-            main.pdf
+            hw/hw3-extra/main.pdf
