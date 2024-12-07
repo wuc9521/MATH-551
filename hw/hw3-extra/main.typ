@@ -1,3 +1,5 @@
+#import "co.typ"
+
 #set page(
   paper: "a4",
   margin: (top: 2.5cm, left: 2.5cm, right: 2.5cm, bottom: 2.5cm),
@@ -16,11 +18,11 @@
   #set align(center)
   #set text(font: "Times New Roman")
   #block(height: 40%)
-  #block(text(weight: 700, size: 20pt)[Universal property of quotient topology])
+  #block(text(weight: 700, size: 20pt)[Pullback Property: Quotient Topologies to Categories])
   #v(1cm)
   #text(size: 14pt)[Chentian Wu]
   #v(0.5cm)
-  #text(size: 12pt)[Date: #datetime.today().display()]
+  #text(size: 12pt)[2024-12-06]
 ]
 
 #pagebreak()
@@ -32,8 +34,13 @@
 
 #pagebreak()
 
+#include "sections/0-intro.typ"
 #include "sections/1-thm.typ"
 #include "sections/2-imp.typ"
 #include "sections/3-app.typ"
 
-
+#bibliography(
+  "refs.bib",
+  full: true,
+  style: "springer-mathphys",
+)

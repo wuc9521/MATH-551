@@ -1,1 +1,1 @@
-= Applications of the Theorem
+= Applications of the Theorem <app>
