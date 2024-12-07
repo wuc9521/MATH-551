@@ -1,24 +1,25 @@
-name: Compile and Commit Typst Files
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+name: Build Typst document
+on: [push, workflow_dispatch]
 
 permissions:
   contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Compile Typst to PDF
-        uses: ammar-ahmed22/compile-typst-action@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Typst
+        uses: lvignoli/typst-action@main
         with:
-          source_paths: 'hw/hw3-extra/main.typ'
-          output_paths: 'honor-paper.pdf'
-      - name: Commit compiled PDFs
-        uses: stefanzweifel/git-auto-commit-action@v5
+          source_file: |
+            hw/hw3-extra/main.typ
+
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v3
         with:
-          commit_message: '[continuous deployment]: Compiled Typst to PDF'
+          name: PDF
+          path: *.pdf
+
