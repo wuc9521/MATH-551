@@ -1,0 +1,42 @@
+name: Compile Typst Document
+
+on:
+  push:
+    paths:
+      - 'hw/hw3-extra/**'
+  pull_request:
+    paths:
+      - 'hw/hw3-extra/**'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v3
+        with:
+          version: latest
+
+      - name: Compile document
+        run: |
+          typst compile hw/hw3-extra/main.typ honor-paper.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: honor-paper
+          path: honor-paper.pdf
+          
+      - name: Commit PDF
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add honor-paper.pdf
+          git commit -m "Update honor-paper.pdf" || exit 0
+          git push
+
