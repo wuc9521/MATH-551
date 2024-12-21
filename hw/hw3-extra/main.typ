@@ -1,38 +1,26 @@
+#import "@preview/rubber-article:0.1.0": *
 #import "co.typ"
-
-#set page(
-  paper: "a4",
-  margin: (top: 2.5cm, left: 2.5cm, right: 2.5cm, bottom: 2.5cm),
-  numbering: "1",
+#show: article.with(
+  lang: "en",
+  eq-numbering: none,
+  text-size: 10pt,
+  page-numbering: "1",
+  page-numbering-align: center,
+  heading-numbering: "1.1  ",
 )
-
-#set text(font: "Times New Roman", size: 11pt)
-#set heading(numbering: "1.1.")
+#set text(font: "DejaVu Sans Mono")
 #set raw(tab-size: 4)
 #show link: it => {
   set text(fill: rgb(0, 0, 128))
   underline(it)
 }
-
-#[
-  #set align(center)
-  #set text(font: "Times New Roman")
-  #block(height: 40%)
-  #block(text(weight: 700, size: 20pt)[Pullback Property: Quotient Topologies to Categories])
-  #v(1cm)
-  #text(size: 14pt)[Chentian Wu]
-  #v(0.5cm)
-  #text(size: 12pt)[2024-12-06]
-]
-
-#pagebreak()
-
-#outline(
-  title: "Table of Contents",
-  indent: true,
+#maketitle(
+  title: "Pullback Property: Quotient Topologies to Categories",
+  authors: (
+    "Chentian Wu",
+  ),
+  date: "December 6, 2024",
 )
-
-#pagebreak()
 
 #include "sections/0-intro.typ"
 #include "sections/1-thm.typ"
